@@ -1,0 +1,37 @@
+<h1>Stories</h1>
+<div class="row">
+    <% for(let i =0; i<users.length; i++){ %>
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                    <!-- todo -->
+                </div>
+                <div class="card-content center-align">
+                    <h5>
+                        <%= users[i].blog.title %>
+                    </h5>
+
+                    <% if(users[i].author_id == users[i].user._id){%>
+                        <div>
+
+                            <form action="/stories/edit/<%= users[i].author_id %>" method="GET">
+                                <button class="btn btn-mini">Edit</button>
+                            </form>
+                        </div>
+                        <% } %>
+                            <!-- <p>{{stripTags (truncate body 150)}}</p> -->
+                            <br>
+                            <div class="chip">
+                                <img src="<%= users[i].user.image %>" alt="">
+                                <a href="/stories/user/<%= users[i].blog._id %>">
+                                    <%= users[i].user.firstName %>
+                                </a>
+                            </div>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/stories/<%= users[i].blog._id %>" class="btn grey">Read More</a>
+                </div>
+            </div>
+        </div>
+        <% } %>
+</div>

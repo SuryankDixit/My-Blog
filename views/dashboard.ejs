@@ -1,0 +1,43 @@
+<h6>Dashboard</h6>
+<h3>Welcome
+    <%= user.name %>! </h3>
+<p>Your stories</p>
+
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i =0; i<user.blog.length; i++){ %>
+            <tr>
+
+                <td>
+                    <a href="/stories/<%=  user.blog[i]._id %> ">
+                        <%=  user.blog[i].title %>
+                    </a>
+                </td>
+                <td>
+                    <%= user.blog[i].createdAt %>
+                </td>
+                <td><span class="dash-status"><%= user.blog[i].status %></span></td>
+                <td>
+                    <a href="/stories/edit/<%=  user.blog[i]._id %>" class="btn btn-float">
+                        <i class="fas fa-edit"></i>
+                    </a>
+
+                    <form action="/stories/<%=  user.blog[i]._id %>" _method="DELETE" method="POST" id="delete-form">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn red">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    </form>
+                </td>
+            </tr>
+            <% } %>
+    </tbody>
+</table>
